@@ -6,6 +6,21 @@ echo -e "$(uptime | awk -F'( |,|:)+' '{d=h=m=0; if ($7=="min") m=$6; else {if ($
 
 echo "========== NETWORK STATUS =========="
 
+echo -e "LOCAL IP ADDRESS: $(hostname -I | awk -F'( )' '{print $3}')"
 
+IP_PUBLICA=$(curl -4s icanhazip.com)
+echo -e "PUBLIC IP ADDRESS: $IP_PUBLICA"
+
+RESULTS=$(ping 8.8.8.8 -c 1 | grep 'packet loss' | awk -F'(, )+' '{print $3}')
+echo -e "CONNECTIVITY: $RESULTS"
+
+CONNECTION=""
+if [ "$RESULTS" == "0% packet loss"]; then
+    CONNECTION="Online"
+else
+    CONNECTION="Offline"
+fi
+
+echo "CONNECTIVITY: $CONNECTION"
 
 echo "========== SYSTEM RESOURCE STATUS =========="
