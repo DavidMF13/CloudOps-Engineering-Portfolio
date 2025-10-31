@@ -1,4 +1,4 @@
-# CloudOps-Engineering-Portfolio
+# CloudOps Engineering Portfolio
 Hands-on projects demonstrating Linux administration, infrastructure automation, monitoring, and cloud deployment (Azure &amp; AWS)
 
 ## 🌩️ CloudOps & Engineering Portfolio — David Martínez
