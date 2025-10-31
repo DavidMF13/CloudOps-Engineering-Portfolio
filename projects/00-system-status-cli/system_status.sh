@@ -24,3 +24,15 @@ fi
 echo "CONNECTIVITY: $CONNECTION"
 
 echo "========== SYSTEM RESOURCE STATUS =========="
+
+CPU=$(top -n 1 | grep "%Cpu(s)" | awk -F'( )+' '{print $2}')
+echo -e "CPU USAGE: $CPU%"
+
+MEM_TOTAL=$(free | grp "Mem:" | awk -F'( )+' '{print $2}')
+MEM_USED=$(free | grp "Mem:" | awk -F'( )+' '{print $3}')
+MEM_PER=$(echo "scale=2; ($MEM_USED / $MEM_TOTAL) * 100" | bc)
+
+echo -e "RAM USAGE: $MEM_PER%"
+
+DISK_USE=$(df -h | grep " /$" | awk -F'( )+' '{print $5}')
+echo -e "DISK USAGE: $DISK_USE%"
