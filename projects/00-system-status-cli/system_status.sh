@@ -28,8 +28,8 @@ echo "========== SYSTEM RESOURCE STATUS =========="
 CPU=$(top -n 1 | grep "%Cpu(s)" | awk -F'( )+' '{print $2}')
 echo -e "CPU USAGE: $CPU%"
 
-MEM_TOTAL=$(free | grp "Mem:" | awk -F'( )+' '{print $2}')
-MEM_USED=$(free | grp "Mem:" | awk -F'( )+' '{print $3}')
+MEM_TOTAL=$(free | grep "Mem:" | awk -F'( )+' '{print $2}')
+MEM_USED=$(free | grep "Mem:" | awk -F'( )+' '{print $3}')
 MEM_PER=$(echo "scale=2; ($MEM_USED / $MEM_TOTAL) * 100" | bc)
 
 echo -e "RAM USAGE: $MEM_PER%"
