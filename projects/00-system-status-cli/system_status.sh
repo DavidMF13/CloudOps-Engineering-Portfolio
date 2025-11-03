@@ -36,3 +36,7 @@ echo -e "RAM USAGE: $MEM_PER%"
 
 DISK_USE=$(df -h | grep " /$" | awk -F'( )+' '{print $5}')
 echo -e "DISK USAGE: $DISK_USE%"
+
+echo "========= SYSTEM LOG STATUS =========="
+
+sudo grep "error: " /var/log/messages | tail | awk -F'error: ' '{split($1,a," "); print a[1], $2}'
